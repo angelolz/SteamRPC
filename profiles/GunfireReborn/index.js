@@ -30,30 +30,47 @@ export function translateSteamPresence(steamRichPresence) {
         discordRichPresence.largeImageKey = resources.lobby;
     }
 
+    else if(steamRichPresence.toLowerCase().includes("in game")) {
+        discordRichPresence.largeImageKey = resources.in_game;
+    }
+
     else {
         let match = steamRichPresence.match(playingRegex);
 
-        if(match[1] == null || match[2] == null) //means they're in a vault
+        if(match[1] == null || match[2] == null) //means they're in a vault or spiritual assault
         {
             let mapName;
+            let isInVault = true;
             switch (steamRichPresence) {
+                //vaults
                 case "Inconspicuous Grave":
                     mapName = "Longling Tomb";
                     break;
-                case "Act 2 Vault Name": //TODO
+                case "Desert Remains":
                     mapName = "Anxi Desert";
                     break;
-                case "Act 3 Vault Name": //TODO
-                    mapName = "Duo Fjord";
+                case "Shoreside Valley":
+                    mapName = "Shanhai Twin Islands";
                     break;
-                case "Act 4 Vault Name": //TODO
+                case "Snowy Fairyland": //unsure of this
                     mapName = "Hyperborean Jokul";
                     break;
+
+                //maps in spiritual assault
+                case "Mid Fjord":
+                    mapName = "Shanhai Twin Islands";
+                    isInVault = false;
+                    break;
+                case "Desert Frontier": //for some reason the game doesn't show this???
+                    mapName = "Anxi Desert";
+                    isInVault = false;
+                    break;
+
                 default:
                     mapName = steamRichPresence;
             }
 
-            discordRichPresence.state = mapName + " - In Vault";
+            discordRichPresence.state = mapName + (isInVault ? " - In Vault" : "");
 
             let map = resources.maps.find(e => e.name === mapName);
             if(map !== undefined) {
@@ -63,9 +80,9 @@ export function translateSteamPresence(steamRichPresence) {
         }
 
         else {
-            discordRichPresence.state = `${match[1]} - ${match[2]}`
+            discordRichPresence.state = `${match[1].trim()} - ${match[2].trim()}`
 
-            let map = resources.maps.find(e => e.name === match[1]);
+            let map = resources.maps.find(e => e.name === match[1].trim());
             if(map !== undefined) {
                 discordRichPresence.largeImageKey = map.imageURL;
                 discordRichPresence.largeImageText = match[2];

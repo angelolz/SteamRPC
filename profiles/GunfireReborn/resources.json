@@ -9,7 +9,7 @@
             "imageURL": "https://i.imgur.com/7fSbBgB.png"
         },
         {
-            "name": "Duo Fjord",
+            "name": "Shanhai Twin Islands",
             "imageURL": "https://i.imgur.com/WRyhoMU.png"
         },
         {
@@ -19,5 +19,6 @@
     ],
     "menu": "https://i.imgur.com/WDD6Fg9.png",
     "lobby": "https://i.imgur.com/q4t9RAZ.png",
-    "cover": "https://i.imgur.com/NRcrF8A.png"
+    "cover": "https://i.imgur.com/fLM5Jpa.jpg",
+    "in_game": "https://i.imgur.com/NRcrF8A.png"
 }
