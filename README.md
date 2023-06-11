@@ -18,6 +18,7 @@ This allows you to not clutter your gaming PC with additional processes.
 - ~~Rocket League~~ (game stopped providing Rich Presence information which broke this integration)
 - Apex Legends
 - Call of Duty: Modern Warfare II | Warzone 2.0
+- Gunfire Reborn
 
 ### Requirements
  - [Node.js](https://nodejs.org)
